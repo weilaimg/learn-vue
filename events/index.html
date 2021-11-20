@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS Tutorials</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
+    <script src="https://unpkg.com/vue"></script>
+    
+</head>
+<body>
+    <div id="vue-app">
+        <h1>Events</h1>
+        <button @click.once="add(1)">Add a Year</button>
+        <button v-on:click.once="subtrack(1)">Subtrack a Year</button>
+
+        <button @dblclick="add(10)">Add 10 Year</button>
+        <button v-on:dblclick="subtrack(10)">Subtrack 10 Year</button>
+        <p>My age is {{ age }} </p>
+        
+        <div id="canvas" v-on:mousemove="updateXY(100,$event)">
+            {{x}},{{y}}
+        </div>
+
+        <a @click.prevent="click" href="https://google.com">click me</a>
+
+    </div>
+    
+</body>
+    <script src="app.js"></script>
+</html>
