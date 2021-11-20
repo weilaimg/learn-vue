@@ -200,7 +200,7 @@ updateXY: function(inc,event){
 <button @click="add(1)">Add a Year</button>
 ```
 
-### 6.2 （once）一次执行
+### 6.2 Event Modifier（once）一次执行
 
 当在监听事件后面添加once属性时，此监听事件便只执行一次
 
@@ -209,7 +209,7 @@ updateXY: function(inc,event){
 <button v-on:click.once="subtrack(1)">Subtrack a Year</button>
 ```
 
-### 6.3 (prevent) 阻止原事件执行
+### 6.3 Event Modifier（prevent）阻止原事件执行
 
 ```html
 <a @click.prevent="click" href="https://google.com">click me</a>
@@ -218,3 +218,42 @@ updateXY: function(inc,event){
 当添加prevent属性后，vue会阻止原来的link链接跳转事件，从而改为执行click函数
 
 ## 7. 键盘事件
+
+vue同样可以监听键盘事件
+
+```html
+ <div id="vue-app">
+     <h1>Keyboard Events</h1>
+     <label>Name:{{name}} </label>
+     <input type="text" v-on:keyup="logName">
+     <label>Age:{{age}} </label>
+     <input type="text" v-on:keyup.alt.enter="logAge">
+</div>
+```
+
+当在Name的输入框中，每一次的keyup事件都会触发logName函数，从而直接刷新Name后面的值
+
+```js
+logName:function(event){
+    console.log(event)
+    this.name+=event.key
+}
+```
+
+而Age的输入框使用了Event Modifier方法，从而令keyup事件只在Alt+Enter的keyup事件上才会执行
+
+## 8. v-model 事件
+
+对于<input>或是<textarea>标签内的内容，vue提供的v-model事件对其中的值进行监听
+
+```html
+<label>Name:{{name}} </label>
+<input type="text" v-model="name">
+```
+
+这时，v-model的数据更新是双向的
+
+首先，v-model会将name的当前值加载到input的value中
+
+而后，当input value发生改变时，name的值也会随之更新
+
